@@ -6,7 +6,7 @@ const HomePage = () => {
     const [role, setRole] = useState('student');
 
     const handleContinue = () => {
-        if (role === 'teacher') navigate('/teacher/start');
+        if (role === 'teacher') navigate('/teacher/login');
         else navigate('/student/start');
     };
     return (

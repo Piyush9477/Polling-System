@@ -14,7 +14,7 @@ exports.createPoll = async (req, res) => {
         });
         await poll.save();
         res.status(201).json(poll);
-    } catch (error) {
+    } catch (error) {   
         res.status(500).json({ message: error.message });
     }
 };
@@ -26,5 +26,17 @@ exports.getPollsByTeacher = async (req, res) => {
         res.json(polls);
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getActivePoll = async (req, res) => {
+    try {
+        const activePoll = await Poll.findOne({ isActive: true });
+        if (!activePoll) return res.status(404).json({ message: 'No active poll found' });
+
+        res.json(activePoll);
+    } catch (error) {
+        console.error('Error fetching active poll:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };

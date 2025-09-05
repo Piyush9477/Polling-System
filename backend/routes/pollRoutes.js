@@ -6,4 +6,6 @@ router.post('/', pollController.createPoll);
 
 router.get('/teacher/:teacherId', pollController.getPollsByTeacher);
 
+router.get('/active', pollController.getActivePoll);
+
 module.exports = router;
